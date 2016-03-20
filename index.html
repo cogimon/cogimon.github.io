@@ -1,10 +1,18 @@
 ---
 layout: default
+title: Welcome
 ---
 
-<div class="home">
+<div class="page-header">
+  <h1>CogIMon Docs</h1>
+</div>
+Welcome to the CogIMon documentation, tutorials, and help site! We are constantly adding content, so check back often.
 
-  <h1 class="page-heading">Posts</h1>
+<p>
+To get started, check out the links on the left.
+</p>
+
+  <h3>News</h3> 
 
   <ul class="post-list">
     {% for post in site.posts %}
@@ -18,6 +26,7 @@ layout: default
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
+<!-- <div class="home"> -->
 </div>
