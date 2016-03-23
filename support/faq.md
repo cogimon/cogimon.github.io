@@ -11,3 +11,5 @@ section: support/faq
 <div class="page-header">
   <h1>FAQ Section</h1>
 </div>
+
+Oops. Nothing here, yet. We are constantly adding content, so please check back often.
