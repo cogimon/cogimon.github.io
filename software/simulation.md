@@ -65,3 +65,9 @@ This is the operational space force controller according to [Oussama Khatib's pu
 #### [YARP Gazebo Model Plugin](https://github.com/EnricoMingo/iit-coman-ros-pkg.git) 
 
 Gazebo model plugin to simulate the humanoid robot COMAN. It provides a [YARP](http://www.yarp.it/) interface for communication. (coman_gazebo)
+
+## CogIMon-specific Projects
+
+#### [CogIMon Scenarios](https://github.com/corlab/cogimon-scenarios.git) 
+
+Repository collecting scenario data and information. Currently, it contains the required LWRIV simulator configuration to replicate an experimental study on robot control during environmental contacts based on projected operational space dynamics according to [V. Ortenzi et al.](http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=7041392).
