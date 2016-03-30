@@ -9,15 +9,15 @@ section: builder/gettingstarted
 <!--   To get a feel for how the CogiMon modeling toolchain shall work and how you can use it to design control architecture for hybrid force and motion controllers, check out this intro video: -->
 </div>
 
-Oops. Nothing here, yet. We are constantly adding content, so please check back often.
-
-Notes:
+Preliminary notes for replication of the KUKA LWR simulation software and the Ortenzi et al. experiment. Please check back often as we continuously extend this documentation.
 
 #### CogIMon CITk distribution
 
-is available [here](https://opensource.cit-ec.de/projects/citk)
+The simulator and the hybrid force/motion controllers implemented as part of the Ortenzi experiment is modeled in a Cognitive Interaction Toolkit distribution, which is available [here](https://opensource.cit-ec.de/projects/citk). It has so far been tested on Ubuntu Trusty using Gazebo 6.5 and OROCOS-RTT 2.8.
 
 #### Experiment Reproduction
+
+The experiment can be replicated in your environment if you follow the following steps.
 
 ##### Bash Configuration
 
@@ -56,17 +56,13 @@ gzserver -s $PREFIX/lib/orocos/gnulinux/rtt_gazebo_system/librtt_gazebo_system.s
 gzclient &
 ```
 
-```bash
-$PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/toolkit/cogimon-minimal-lwr-nightly/etc/lwr-robot-description/lwr-robot.urdf")'
-```
-
 ###### 3. Load the KUKA LWR model plugin
 
 ```bash
 $PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/toolkit/cogimon-minimal-lwr-nightly/etc/lwr-robot-description/lwr-robot.urdf")'
 ```
 
-###### 4. Load the experiment plugins and start the simulation
+###### 4. Load and configure the experiment plugins and start the simulation
 
 ```bash
 $PREFIX/bin/rsb0.13 call -l $PREFIX/share/rst0.13/proto/sandbox/rst/cogimon/ModelComponentConfig.proto 'socket:/GazeboDeployerWorldPlugin/deployRTTComponentWithModel(pb:.rst.cogimon.ModelComponentConfig:{component_name:"lwr_gazebo" component_type:"LWRGazeboComponent" component_package:"rtt-gazebo-lwr-integration" model_name:"kuka-lwr" script:"/vol/toolkit/cogimon-minimal-lwr-nightly/etc/cogimon-scenarios/scenario-wipe-board/script/scn-wipe-board-short.ops"})'
