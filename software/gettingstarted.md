@@ -42,9 +42,35 @@ export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
 
 ##### Experiment Execution
 
+The following commands assume that they are executed in a command shell with an environment configured as indicated above.
 
+###### 1. Start the Gazebo Server with the required plugins
 
+```bash
+gzserver -s $PREFIX/lib/orocos/gnulinux/rtt_gazebo_system/librtt_gazebo_system.so $PREFIX/etc/cogimon-scenarios/scenario-wipe-board/world/scn-wipe-board-vertical.world
+```
 
+###### 2. Start the Gazebo Client in a new terminal
+
+```bash
+gzclient &
+```
+
+```bash
+$PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/toolkit/cogimon-minimal-lwr-nightly/etc/lwr-robot-description/lwr-robot.urdf")'
+```
+
+###### 3. Load the KUKA LWR model plugin
+
+```bash
+$PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/toolkit/cogimon-minimal-lwr-nightly/etc/lwr-robot-description/lwr-robot.urdf")'
+```
+
+###### 4. Load the experiment plugins and start the simulation
+
+```bash
+$PREFIX/bin/rsb0.13 call -l $PREFIX/share/rst0.13/proto/sandbox/rst/cogimon/ModelComponentConfig.proto 'socket:/GazeboDeployerWorldPlugin/deployRTTComponentWithModel(pb:.rst.cogimon.ModelComponentConfig:{component_name:"lwr_gazebo" component_type:"LWRGazeboComponent" component_package:"rtt-gazebo-lwr-integration" model_name:"kuka-lwr" script:"/vol/toolkit/cogimon-minimal-lwr-nightly/etc/cogimon-scenarios/scenario-wipe-board/script/scn-wipe-board-short.ops"})'
+```
 
 <!-- TODO:
 * Add link and explanation to CITk distribution / experiment -->
