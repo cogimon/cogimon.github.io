@@ -70,7 +70,7 @@ $PREFIX/bin/rsb0.13 call -l $PREFIX/share/rst0.13/proto/sandbox/rst/cogimon/Mode
 
 ##### Notes
 
-A properly configured rsb.conf file needs to be placed in the $HOME/.config directory of the current user. An exemplary config is as follows:
+If you run the experiment for the first time, an configuration file named `rsb.conf` needs to be placed in the `$HOME/.config` directory of the user executing the simulation. An exemplary configuration is shown in the following:
 
 ```
 [transport.socket]
@@ -100,7 +100,7 @@ host = localhost
 port = 4803
  
 [plugins.cpp]    # LOAD the required plugins!
-load = rsbspread:rsbintrospection:rsbrstconverterssandbox:rsbrstconvertersrci:rsbrstconvertersstable
+load = rsbintrospection:rsbrstconverterssandbox:rsbrstconvertersrci:rsbrstconvertersstable
  
 [introspection]
 enabled = 1    # enable to make use of introspection tools (optional).
