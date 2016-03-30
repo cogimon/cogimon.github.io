@@ -68,6 +68,44 @@ $PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/too
 $PREFIX/bin/rsb0.13 call -l $PREFIX/share/rst0.13/proto/sandbox/rst/cogimon/ModelComponentConfig.proto 'socket:/GazeboDeployerWorldPlugin/deployRTTComponentWithModel(pb:.rst.cogimon.ModelComponentConfig:{component_name:"lwr_gazebo" component_type:"LWRGazeboComponent" component_package:"rtt-gazebo-lwr-integration" model_name:"kuka-lwr" script:"/vol/toolkit/cogimon-minimal-lwr-nightly/etc/cogimon-scenarios/scenario-wipe-board/script/scn-wipe-board-short.ops"})'
 ```
 
+##### Notes
+
+A properly configured rsb.conf file needs to be placed in the $HOME/.config directory of the current user. An exemplary config is as follows:
+
+```
+[transport.socket]
+enabled = 1    # ENABLE to use socket transport!
+# SETUP the correct mapping between types!
+converter.cpp.".rst.dynamics.Pressures" = rst::dynamics::Pressures
+converter.cpp.".rst.geometry.Lengths" = rst::geometry::Lengths
+converter.cpp.".rst.geometry.Pose" = rci::Pose
+converter.cpp.".rst.signalprocessing.InstantaneousPhase" = rst::signalprocessing::InstantaneousPhase
+converter.cpp.".rst.cbse.ComponentState" = cca::ComponentState
+converter.cpp.".rst.dynamics.Forces" = rci::Forces
+converter.cpp.".rst.dynamics.JointImpedance" = rci::JointImpedance
+converter.cpp.".rst.signalprocessing.InstantaneousPhase" = rst::signalprocessing::InstantaneousPhase
+converter.cpp.".rst.cbse.ComponentState" = cca::ComponentState
+converter.cpp.".rst.dynamics.JointTorques" = rci::JointTorques
+converter.cpp.".rst.dynamics.Wrench" = rci::Wrench
+converter.cpp.".rst.geometry.Translation" = rci::Translation
+converter.cpp.".rst.kinematics.JointAccelerations" = rci::JointAccelerations
+converter.cpp.".rst.kinematics.JointAngles" = rci::JointAngles
+converter.cpp.".rst.kinematics.JointVelocities" = rci::JointVelocities
+converter.cpp.".rst.math.VectorDouble" = rci::Doubles
+converter.cpp.".rst.cbse.Tick" = cca::timing::Tick
+ 
+[transport.spread]
+enabled = 0    # DISABLE because we are using the socket transport!
+host = localhost
+port = 4803
+ 
+[plugins.cpp]    # LOAD the required plugins!
+load = rsbspread:rsbintrospection:rsbrstconverterssandbox:rsbrstconvertersrci:rsbrstconvertersstable
+ 
+[introspection]
+enabled = 1    # enable to make use of introspection tools (optional).
+```
+
 <!-- TODO:
 * Add link and explanation to CITk distribution / experiment -->
 
