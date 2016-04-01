@@ -13,7 +13,7 @@ Preliminary notes for replication of the KUKA LWR simulation software and the Or
 
 #### CogIMon CITk distribution
 
-The simulator and the hybrid force/motion controllers implemented as part of the Ortenzi experiment is modeled in a Cognitive Interaction Toolkit distribution, which is available [here](https://opensource.cit-ec.de/projects/citk). It has so far been tested on Ubuntu Trusty using Gazebo 6.5 and OROCOS-RTT 2.8.
+The simulator and the hybrid force/motion controllers implemented as part of the Ortenzi experiment is modeled in a Cognitive Interaction Toolkit distribution, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-lwr-hybrid-controller-nightly). It has so far been tested on Ubuntu Trusty using Gazebo 6.5 and OROCOS-RTT 2.8.
 
 #### Experiment Reproduction
 
