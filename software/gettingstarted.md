@@ -56,17 +56,14 @@ git clone https://opensource.cit-ec.de/git/citk .
 
 1. Install the ```cogimon-minimal-nightly``` distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). In particular you need to install the system dependences and call the build generator for the CoSimA distribution.
 
-Pleas note the following:
+	***Note:*** 
+	* You need to replace the ```$prefix``` in the build generator arguments with the expanded directory location
+	* You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
+	* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
 
-* You need to replace the ```$prefix``` in the build generator arguments with the expanded directory location
-* You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
-* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
+	A full example of the command line call may look as follows:
 
-A full example of the command line call may look as follows:
-
-```bash
-./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
-```
+		./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
 
 ### System Test
 
