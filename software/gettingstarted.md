@@ -50,7 +50,8 @@ Pleas note the following:
 * You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
 
 A full example of the command line call may look as follows:
-```
+
+```bash
 ./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
 ```
 
