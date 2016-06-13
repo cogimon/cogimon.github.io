@@ -11,9 +11,41 @@ section: builder/gettingstarted
 
 Preliminary notes for replication of the KUKA LWR simulation software and the Ortenzi et al. experiment. Please check back often as we continuously extend this documentation.
 
-#### CogIMon CITk distribution
+#### Software Installation
 
-The simulator and the hybrid force/motion controllers implemented as part of the Ortenzi experiment is modeled in a Cognitive Interaction Toolkit distribution, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-lwr-hybrid-controller-nightly). It has so far been tested on Ubuntu Trusty using Gazebo 6.5 and OROCOS-RTT 2.8.
+The CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot is modeled in a Cognitive Interaction Toolkit (CITk) distribution, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 and OROCOS-RTT 2.8. MacOS and Ubuntu 16.04 will also be supported.
+
+##### Prerequisites
+
+###### Add Gazebo repositories for binary installation (recommended)
+
+1. Setup your computer to accept software from packages.osrfoundation.org.
+
+    ***Note:*** there is a list of [available mirrors](https://bitbucket.org/osrf/gazebo/wiki/gazebo_mirrors) for this repository which could improve the download speed.
+
+        sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+
+1. Setup keys.
+
+        wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+
+1. Updage Package Cache.
+
+        sudo apt-get update
+
+[In case you experience any problems at this stage, please consult the Gazebo installation  guidelines](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
+
+##### CITk-based Installation
+
+1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+
+2. Install the cogimon-minimal-nightly distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly)
+
+Pleas note the following:
+
+* You need to replace the ```$prefix``` in the build generator arguments with the expanded directory location
+* You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
+* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
 
 #### Experiment Reproduction
 
