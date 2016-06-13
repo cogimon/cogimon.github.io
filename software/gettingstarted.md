@@ -9,15 +9,26 @@ section: builder/gettingstarted
 <!--   To get a feel for how the CogiMon modeling toolchain shall work and how you can use it to design control architecture for hybrid force and motion controllers, check out this intro video: -->
 </div>
 
-Preliminary notes for replication of the KUKA LWR simulation software and the Ortenzi et al. experiment. Please check back often as we continuously extend this documentation.
+This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot. Please check back often as we continuously extend this documentation.
 
 ### Software Installation
 
-The CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot is modeled in a Cognitive Interaction Toolkit (CITk) distribution, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 and OROCOS-RTT 2.8. MacOS and Ubuntu 16.04 will also be supported.
+CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 and OROCOS-RTT 2.8. MacOS and Ubuntu 16.04 will also be supported.
 
 #### Bootstrap the CITk environment
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+
+1. Clone the CITk recipe repository
+
+Please note, that ```$prefix``` should be an environment variable pointing to the top-level install prefix of the CITk. You may set it in bash using a command such as ```export prefix=/some/install/path``` that you need to modify according to your preferences.
+
+```bash
+cd $prefix
+mkdir dist
+cd dist
+git clone https://opensource.cit-ec.de/git/citk .
+```
 
 #### Install Gazebo 
 
@@ -41,18 +52,7 @@ The CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and th
 
 #### Install CoSimA
 
-1. Clone the CITk recipe repository
-
-Please note, that ```$prefix``` should be the top-level install prefix of the CITk.
-
-```bash
-cd $prefix
-mkdir dist
-cd dist
-git clone https://opensource.cit-ec.de/git/citk .
-```
-
-1. Install the ```cogimon-minimal-nightly``` distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly)
+1. Install the ```cogimon-minimal-nightly``` distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). In particular you need to install the system dependences and call the build generator for the CoSimA distribution.
 
 Pleas note the following:
 
@@ -66,41 +66,65 @@ A full example of the command line call may look as follows:
 ./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
 ```
 
-#### System Test
+### System Test
 
-The system can be manually tested in your environment if you follow the following steps.
+The system can be manually tested in your environment if you follow the following steps. The commands shown here assume that you execute them in a  terminal using bash.
 
-##### Bash Configuration
+#### Start the RSB Server process
 
 ```bash
 source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+rsb0.14 server
 ```
 
-##### Experiment Execution
+You should see some output confirming that the server has started.
 
-The following commands assume that they are executed in a command shell with an environment configured as indicated above.
-
-###### 1. Start the Gazebo Server with the required plugins
+#### Start the RTT Deployer console
 
 ```bash
-gzserver -s $PREFIX/lib/orocos/gnulinux/rtt_gazebo_system/librtt_gazebo_system.so $PREFIX/etc/cogimon-scenarios/scenario-wipe-board/world/scn-wipe-board-vertical.world
+source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+deployer-gnulinux
 ```
 
-###### 2. Start the Gazebo Client in a new terminal
+You should get a shell-style prompt, which allows you to interact with the RTT environment.
+
+#### Load and start the required CoSimA components
+
+Please type within the deployer-console (replace $prefix with the expanded installation prefix):
 
 ```bash
-gzclient &
+loadService("this","scripting")
+scripting.runScript("$prefix/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_kinchains.ops")
 ```
 
-###### 3. Load the KUKA LWR model plugin
+You should see quite some output in the deployer that you may ignore for now.
+
+#### Start an RSB Logger process (optional)
 
 ```bash
-$PREFIX/bin/rsb0.13 call 'socket:/GazeboDeployerWorldPlugin/spawnModel("/vol/toolkit/cogimon-minimal-lwr-nightly/etc/lwr-robot-description/lwr-robot.urdf")'
+source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+rsb0.14 logger socket:/
 ```
 
-###### 4. Load and configure the experiment plugins and start the simulation
+You should see a data stream that sends joint feedback with 100Hz.
 
-##### Notes
+#### Start the Gazebo client process
+
+```bash
+source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+gzclient
+```
+
+You should see the robot in the Gazebo front end.
+
+#### Start the Robot Gui to make the robot move
+
+```bash
+source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+rsb-robot-gui1.0
+```
+
+You should see a basic robot gui that allows you to set a joint configuration that is send to the simulated robot once you apply the values.
 
 
 <!-- TODO:
