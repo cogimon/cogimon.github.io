@@ -64,6 +64,10 @@ CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for eas
 
 		./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
 
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```distribution-buildflow-cogimon-minimal-nightly``` job (only possible after login).
+
+3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
+
 ### System Test
 
 The system can be manually tested in your environment if you follow the following steps. The commands shown here assume that you execute them in a  terminal using bash.
