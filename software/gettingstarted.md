@@ -25,12 +25,10 @@ CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for eas
 
 	***Note:*** The ```$prefix``` environment variable should point to the top-level install prefix of the bootstrapped CITk. You may set it in bash using a command such as ```export prefix=/some/install/path``` that you need to modify according to your preferences.
 
-```bash
-cd $prefix
-mkdir dist
-cd dist
-git clone https://opensource.cit-ec.de/git/citk .
-```
+		cd $prefix
+		mkdir dist
+		cd dist
+		git clone https://opensource.cit-ec.de/git/citk .
 
 #### Install Gazebo 
 
