@@ -15,7 +15,11 @@ Preliminary notes for replication of the KUKA LWR simulation software and the Or
 
 The CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot is modeled in a Cognitive Interaction Toolkit (CITk) distribution, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 and OROCOS-RTT 2.8. MacOS and Ubuntu 16.04 will also be supported.
 
-##### Prerequisites
+##### Bootstrap the CITk environment
+
+1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+
+##### Install Gazebo Simulation environment  
 
 ###### Add Gazebo repositories for binary installation (recommended)
 
@@ -29,15 +33,13 @@ The CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and th
 
         wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 
-1. Updage Package Cache.
+1. Update Package Cache.
 
         sudo apt-get update
 
 [In case you experience any problems at this stage, please consult the Gazebo installation  guidelines](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
 
-##### CITk-based Installation
-
-1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+##### Install CogIMon Distribution
 
 2. Install the cogimon-minimal-nightly distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly)
 
