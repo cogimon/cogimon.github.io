@@ -19,9 +19,11 @@ CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for eas
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
 
+	***Note:*** If the download from the stated server is slow, you may also download it from the mirror [here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0).
+
 1. Clone the CITk recipe repository
 
-Please note, that ```$prefix``` should be an environment variable pointing to the top-level install prefix of the CITk. You may set it in bash using a command such as ```export prefix=/some/install/path``` that you need to modify according to your preferences.
+	***Note:*** The ```$prefix``` environment variable should point to the top-level install prefix of the bootstrapped CITk. You may set it in bash using a command such as ```export prefix=/some/install/path``` that you need to modify according to your preferences.
 
 ```bash
 cd $prefix
@@ -124,7 +126,9 @@ source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb-robot-gui1.0
 ```
 
-You should see a basic robot gui that allows you to set a joint configuration that is send to the simulated robot once you apply the values.
+You should see a basic robot gui that allows you to set a joint configuration that is send to the simulated robot once you apply the values. At the end of this step the Gazebo frontend and the robot GUI should look similar to the following screenshot:
+
+![Screenshot of COMAN Simulation and Robot GUI in Gazebo 6](images/cosima.png "COMAN Simulation in Gazebo 6")
 
 
 <!-- TODO:
