@@ -49,6 +49,11 @@ Pleas note the following:
 * You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
 * You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
 
+A full example of the command line call may look as follows:
+```
+./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
+```
+
 #### Experiment Reproduction
 
 The experiment can be replicated in your environment if you follow the following steps.
