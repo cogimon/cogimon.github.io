@@ -55,6 +55,7 @@ CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for eas
 1. Install the ```cogimon-minimal-nightly``` distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). In particular you need to install the system dependences and call the build generator for the CoSimA distribution.
 
 	***Note:*** 
+
 	* You need to replace the ```$prefix``` in the build generator arguments with the expanded directory location
 	* You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
 	* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
