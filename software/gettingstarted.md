@@ -113,7 +113,7 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 ##### OS X
 
-**Note:** The **OS X** instructions are still considered WiP. If you experience some problems, feel free to contact us.
+***Note:*** The **OS X** instructions are still considered WiP. If you experience some problems, feel free to contact us.
 
 ```bash
 brew install orocos-ocl
