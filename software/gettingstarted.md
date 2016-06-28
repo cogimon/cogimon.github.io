@@ -13,7 +13,13 @@ This document explain installation and test of the CogIMon Simulation Architectu
 
 ### Software Installation
 
-CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 and OROCOS-RTT 2.8. MacOS and Ubuntu 16.04 will also be supported.
+CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on:
+* Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 / (LTS 7.1) and OROCOS-RTT 2.8
+* OS X Yosemite (10.10) / El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.8
+
+The following configurations will be supported / tested soon:
+* Ubuntu Xenial (16.04) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
+* OS X El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
 
 #### Bootstrap the CITk environment
 
