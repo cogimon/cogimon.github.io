@@ -14,9 +14,9 @@ section: support/faq
 
 Oops. Nothing here, yet. We are constantly adding content, so please check back often.
 
-## CoSimA ChangeLog
+### CoSimA ChangeLog
 
-### 10.08.2016
+#### 10.08.2016
 
 - Everything is now more stable!
 - Kinematic chains are not hardcoded anymore _(thx Enrico)_
