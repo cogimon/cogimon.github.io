@@ -14,21 +14,26 @@ section: support/faq
 
 Oops. Nothing here, yet. We are constantly adding content, so please check back often.
 
-### CoSimA ChangeLog
+## CoSimA ChangeLog
 
-#### 2016-08-10
+### 2016-08-10
 
+#### Fixed
 - Everything is now more stable!
+- GZ shutdown bug is fixed
+
+#### Changed
 - Kinematic chains are not hardcoded anymore _(thx Enrico)_
 - Kinematic chains are now read from URDF SRDF _(thx Enrico)_
 - Clean and small dependency footprint
+
+#### Added
 - Coman model with sticks as arms is supported
 - Support for loading predefined environments
 - Support for executing GZ sensors _(thx Josh)_
 - Resetting the robot simulation component _(thx Enrico)_
 - Resetting the model poses
 - Resetting the simulated world
-- GZ shutdown bug is fixed
 
 TODO
 
