@@ -24,10 +24,10 @@ Oops. Nothing here, yet. We are constantly adding content, so please check back 
 
 ##### Changed
 - Kinematic chains are not hardcoded anymore _(thx Enrico)_
-- Kinematic chains are now read from URDF SRDF _(thx Enrico)_
 - Clean and small dependency footprint
 
 ##### Added
+- Kinematic chains are now read from URDF/SRDF _(thx Enrico)_
 - Coman model with sticks as arms is supported
 - Support for loading predefined environments
 - Support for executing GZ sensors _(thx Josh)_
