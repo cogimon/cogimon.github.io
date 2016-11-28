@@ -51,7 +51,7 @@ The following configurations will be supported / tested soon:
 
 1. Add our homebrew tap, which contains the necessary formulas for the installation.
 
-    ```bash
+    ```
     brew tap corlab/homebrew-formulas
     ```
 
@@ -78,7 +78,7 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 4. Install Gazebo7.
 
-    ```bash
+    ```
     sudo apt-get install gazebo7
     # For developers that work on top of Gazebo, one extra package
     sudo apt-get install libgazebo7-dev
@@ -88,13 +88,13 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 1. Add the official tap for Gazebo.
 
-    ```bash
+    ```
     brew tap osrf/simulation
     ```
     
 2. Install Gazebo7. _If you're running **Yosemite** you can use the bottled-installation, which is much faster than building from source._
 
-    ```bash
+    ```
     brew install gazebo7
     ```
 
@@ -127,7 +127,7 @@ In particular you need to install the system dependences **first** and call the 
 
 ***Note:*** The **OS X** instructions are still considered WiP. If you experience some problems, feel free to contact us.
 
-```bash
+```
 brew install orocos-ocl
 brew install orocos-stdint_typekit
 brew install orocos-typelib
@@ -159,7 +159,7 @@ _For **Ubuntu** you just need to source the following script that sets up all th
 1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-nightly_.
 
 
-    ```bash
+    ```
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     ```
 
@@ -169,25 +169,25 @@ _For **OS X** you need to set the following environmental variables manually._
 
 1. You need to "tell" Orocos where to find the libraries you want to use.
 
-    ```bash
+    ```
     export RTT_COMPONENT_PATH=/usr/local/lib
     ```
 
 2. You need to clone the [model repository](https://github.com/corlab/cogimon-gazebo-models) into your workspace.
 
-    ```bash
+    ```
     export GAZEBO_MODEL_PATH=< path-to-the-model-repository >
     ```
 
 3. You need to "tell" Gazebo where to find the clock plugin for synchronization.
 
-    ```bash
+    ```
     export GAZEBO_PLUGIN_PATH=/usr/local/lib/< path-to-gazebo-clock-plugin >
     ```
 
 #### Start the RSB Server process
 
-```bash
+```
 source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb0.14 server
 ```
@@ -196,7 +196,7 @@ You should see some output confirming that the server has started.
 
 #### Start the RTT Deployer console
 
-```bash
+```
 source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 deployer-gnulinux
 ```
@@ -207,7 +207,7 @@ You should get a shell-style prompt, which allows you to interact with the RTT e
 
 Please type within the deployer-console (replace $HOME with the expanded installation prefix = /home/$YOUR_USRNAME/):
 
-```bash
+```
 loadService("this","scripting")
 scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_kinchains.ops")
 ```
@@ -216,7 +216,7 @@ You should see quite some output in the deployer that you may ignore for now.
 
 #### Start an RSB Logger process (optional)
 
-```bash
+```
 source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb0.14 logger socket:/
 ```
@@ -225,7 +225,7 @@ You should see a data stream that sends joint feedback with 100Hz.
 
 #### Start the Gazebo client process
 
-```bash
+```
 source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 gzclient
 ```
@@ -234,7 +234,7 @@ You should see the robot in the Gazebo front end.
 
 #### Start the Robot Gui to make the robot move
 
-```bash
+```
 source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb-robot-gui1.0
 ```
