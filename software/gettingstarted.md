@@ -5,8 +5,11 @@ section: builder/gettingstarted
 ---
 
 <div class="page-header">
+
   <h1>Getting Started</h1>
-<!--   To get a feel for how the CogiMon modeling toolchain shall work and how you can use it to design control architecture for hybrid force and motion controllers, check out this intro video: -->
+
+<!--   To get a feel for how the CogiMon modeling toolchain shall work and how you can use it to design control architecture
+for hybrid force and motion controllers, check out this intro video: -->
 </div>
 
 This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN
@@ -17,6 +20,7 @@ and the KUKA LWRIV+ robot. Please check back often as we continuously extend thi
 [CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is
 modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
 for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
+
 It has so far been tested on:
 
 * Ubuntu Trusty (LTS 14.04, 64 Bit) using Gazebo 6.5 / (LTS 7.1) and OROCOS-RTT 2.8
@@ -108,7 +112,8 @@ In particular you need to install the system dependences **first** and call the 
 	***Note:*** 
 
 	* You may add ```--cache-directory=/tmp``` to the build generator command in order to speed up repeated job generation
-	* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
+	* You need to replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile
+	  or the password that you used during the Jenkins bootstrapping.
 
 	A full example of the command line call may look similar to the following:
 
@@ -212,7 +217,7 @@ You should see quite some output in the deployer that you may ignore for now.
 #### Start an RSB Logger process (optional)
 
 ```bash
-source $HOME/citk/systems/cogimon-minimal-nightly/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb0.14 logger socket:/
 ```
 
