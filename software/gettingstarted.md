@@ -13,15 +13,17 @@ This document explain installation and test of the CogIMon Simulation Architectu
 
 ### Software Installation
 
-CoSimA is modeled in a Cognitive Interaction Toolkit (CITk) distribution for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). It has so far been tested on:
+[CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
+for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
+It has so far been tested on:
 
-* Ubuntu Trusty (LTS 14.04) using Gazebo 6.5 / (LTS 7.1) and OROCOS-RTT 2.8
+* Ubuntu Trusty (LTS 14.04, 64 Bit) using Gazebo 6.5 / (LTS 7.1) and OROCOS-RTT 2.8
 
 * OS X Yosemite (10.10) / El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.8
 
 The following configurations will be supported / tested soon:
 
-* Ubuntu Xenial (16.04) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
+* Ubuntu Xenial (LTS 14.04, 64 Bit) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
 
 * OS X El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
 
@@ -31,16 +33,13 @@ The following configurations will be supported / tested soon:
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
 
-	***Note:*** If the download from the stated server is slow, you may also download it from the mirror [here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0).
+	<!--- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
+	[here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0). -->
 
 1. Clone the CITk recipe repository
 
-	***Note:*** The ```$prefix``` environment variable should point to the top-level install prefix of the bootstrapped CITk. You may set it in bash using a command such as ```export prefix=/some/install/path``` that you need to modify according to your preferences.
-
-		cd $prefix
-		mkdir dist
-		cd dist
-		git clone https://opensource.cit-ec.de/git/citk .
+		mkdir -p $HOME/citk/dist && cd $HOME/citk/dist
+        git clone https://opensource.cit-ec.de/git/citk .
 
 ##### OS X
 
@@ -58,7 +57,8 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 1. Setup your computer to accept software from packages.osrfoundation.org.
 
-    ***Note:*** there is a list of [available mirrors](https://bitbucket.org/osrf/gazebo/wiki/gazebo_mirrors) for this repository which could improve the download speed.
+    ***Note:*** there is a list of [available mirrors](https://bitbucket.org/osrf/gazebo/wiki/gazebo_mirrors) for this
+    repository which could improve the download speed.
 
         sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 
@@ -99,19 +99,20 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 ##### Ubuntu
 
-1. Install the ```cogimon-minimal-nightly``` distribution as explained [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly). In particular you need to install the system dependences and call the build generator for the CoSimA distribution.
+1. Install the ```CogIMon Minimal Simulation Distribution-nightly``` distribution as explained
+[here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
+In particular you need to install the system dependences **first** and call the build generator for the CoSimA distribution.
 
 	***Note:*** 
 
-	* You need to replace the ```$prefix``` in the build generator arguments with the expanded directory location
-	* You may add ```--cache-directory``` to the build generator command in order to speed up repeated job generation
+	* You may add ```--cache-directory=/tmp``` to the build generator command in order to speed up repeated job generation
 	* You may replace your password with the Jenkins API token that can be retrieved from your Jenkins user profile
 
 	A full example of the command line call may look similar to the following:
 
-		./jenkins/job-configurator --on-error=continue -d ./citk/distributions/cogimon-minimal-nightly.distribution -t './citk/templates/toolkit/*.template' -u ndehio -a 8c4ccaed525d91b0ea9de6f94bdbdd31 -D toolkit.volume=/vol/coman --delete-other --cache-directory=/home/ndehio/.buildgen
+        $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
 
-2. In your local [Jenkins build server](https://localhost:8080) trigger the ```distribution-buildflow-cogimon-minimal-nightly``` job (only possible after login).
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```	distribution-buildflow-cogimon-minimal-nightly``` job (only possible after login).
 
 3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
 
@@ -141,16 +142,18 @@ brew install rtt-rst-rt-typekit
 
 ### System Test
 
-The system can be manually tested in your environment if you follow the following steps. The commands shown here assume that you execute them in a  terminal using bash.
+The system can be manually tested in your environment if you follow the following steps.
+The commands shown here assume that you execute them in a  terminal using bash.
 
 ##### Ubuntu
 
 _For **Ubuntu** you just need to source the following script that sets up all the environmental variables for you._
 
-1. Source the particular script, which you'll find in your _$prefix_.
+1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-nightly_.
+
 
     ```bash
-    source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     ```
 
 ##### OS X
@@ -178,7 +181,7 @@ _For **OS X** you need to set the following environmental variables manually._
 #### Start the RSB Server process
 
 ```bash
-source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb0.14 server
 ```
 
@@ -187,7 +190,7 @@ You should see some output confirming that the server has started.
 #### Start the RTT Deployer console
 
 ```bash
-source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 deployer-gnulinux
 ```
 
@@ -195,11 +198,11 @@ You should get a shell-style prompt, which allows you to interact with the RTT e
 
 #### Load and start the required CoSimA components
 
-Please type within the deployer-console (replace $prefix with the expanded installation prefix):
+Please type within the deployer-console (replace $HOME/citk/systems/cogimon-minimal-nightly/ with the expanded installation prefix = /home/YOUR_USRNAME/citk/systems/cogimon-minimal-nightly/):
 
 ```bash
 loadService("this","scripting")
-scripting.runScript("$prefix/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_kinchains.ops")
+scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_kinchains.ops")
 ```
 
 You should see quite some output in the deployer that you may ignore for now.
@@ -207,7 +210,7 @@ You should see quite some output in the deployer that you may ignore for now.
 #### Start an RSB Logger process (optional)
 
 ```bash
-source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb0.14 logger socket:/
 ```
 
@@ -216,7 +219,7 @@ You should see a data stream that sends joint feedback with 100Hz.
 #### Start the Gazebo client process
 
 ```bash
-source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 gzclient
 ```
 
@@ -225,7 +228,7 @@ You should see the robot in the Gazebo front end.
 #### Start the Robot Gui to make the robot move
 
 ```bash
-source $prefix/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 rsb-robot-gui1.0
 ```
 
