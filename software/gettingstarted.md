@@ -9,11 +9,13 @@ section: builder/gettingstarted
 <!--   To get a feel for how the CogiMon modeling toolchain shall work and how you can use it to design control architecture for hybrid force and motion controllers, check out this intro video: -->
 </div>
 
-This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot. Please check back often as we continuously extend this documentation.
+This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN
+and the KUKA LWRIV+ robot. Please check back often as we continuously extend this documentation.
 
 ### Software Installation
 
-[CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
+[CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is
+modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
 for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
 It has so far been tested on:
 
@@ -33,7 +35,7 @@ The following configurations will be supported / tested soon:
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
 
-	<!--- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
+	<!-- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
 	[here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0). -->
 
 1. Clone the CITk recipe repository
@@ -198,7 +200,7 @@ You should get a shell-style prompt, which allows you to interact with the RTT e
 
 #### Load and start the required CoSimA components
 
-Please type within the deployer-console (replace $HOME/citk/systems/cogimon-minimal-nightly/ with the expanded installation prefix = /home/YOUR_USRNAME/citk/systems/cogimon-minimal-nightly/):
+Please type within the deployer-console (replace $HOME with the expanded installation prefix = /home/$YOUR_USRNAME/):
 
 ```bash
 loadService("this","scripting")
