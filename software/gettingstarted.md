@@ -190,7 +190,7 @@ Please type within the deployer-console (replace $HOME with the expanded install
 
 
     loadService("this","scripting")
-    scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_kinchains.ops")
+    scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up.ops")
 
 
 You should see quite some output in the deployer that you may ignore for now.
