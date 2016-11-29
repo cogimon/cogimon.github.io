@@ -150,7 +150,7 @@ _For **Ubuntu** you just need to source the following script that sets up all th
 
 1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-nightly_.
 
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+        source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
 
 ##### OS X
 
@@ -158,15 +158,15 @@ _For **OS X** you need to set the following environmental variables manually._
 
 1. You need to "tell" Orocos where to find the libraries you want to use.
 
-    export RTT_COMPONENT_PATH=/usr/local/lib
+        export RTT_COMPONENT_PATH=/usr/local/lib
 
 2. You need to clone the [model repository](https://github.com/corlab/cogimon-gazebo-models) into your workspace.
 
-    export GAZEBO_MODEL_PATH=< path-to-the-model-repository >
+        export GAZEBO_MODEL_PATH=< path-to-the-model-repository >
 
 3. You need to "tell" Gazebo where to find the clock plugin for synchronization.
 
-    export GAZEBO_PLUGIN_PATH=/usr/local/lib/< path-to-gazebo-clock-plugin >
+        export GAZEBO_PLUGIN_PATH=/usr/local/lib/< path-to-gazebo-clock-plugin >
 
 #### Start the RSB Server process
 
