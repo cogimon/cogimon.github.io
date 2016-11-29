@@ -78,11 +78,10 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 4. Install Gazebo7.
 
-    ```
-    sudo apt-get install gazebo7
-    # For developers that work on top of Gazebo, one extra package
-    sudo apt-get install libgazebo7-dev
-    ```
+        sudo apt-get install gazebo7
+        # For developers that work on top of Gazebo, one extra package
+        sudo apt-get install libgazebo7-dev
+
 
 ##### OS X
 
