@@ -51,9 +51,8 @@ The following configurations will be supported / tested soon:
 
 1. Add our homebrew tap, which contains the necessary formulas for the installation.
 
-    ```
-    brew tap corlab/homebrew-formulas
-    ```
+        brew tap corlab/homebrew-formulas
+
 
 #### Install Gazebo 
 
@@ -93,8 +92,6 @@ _The following commands add Gazebo repositories for binary installation to your 
 2. Install Gazebo7. _If you're running **Yosemite** you can use the bottled-installation, which is much faster than building from source._
 
     brew install gazebo7
-
-
 
 [In case you experience any problems at this stage, please consult the Gazebo installation  guidelines](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
 
