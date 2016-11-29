@@ -86,12 +86,12 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 1. Add the official tap for Gazebo.
 
-    brew tap osrf/simulation
+        brew tap osrf/simulation
 
     
 2. Install Gazebo7. _If you're running **Yosemite** you can use the bottled-installation, which is much faster than building from source._
 
-    brew install gazebo7
+        brew install gazebo7
 
 [In case you experience any problems at this stage, please consult the Gazebo installation  guidelines](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
 
