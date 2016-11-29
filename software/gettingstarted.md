@@ -121,23 +121,23 @@ In particular you need to install the system dependences **first** and call the 
 
 ***Note:*** The **OS X** instructions are still considered WiP. If you experience some problems, feel free to contact us.
 
-brew install orocos-ocl
-brew install orocos-stdint_typekit
-brew install orocos-typelib
-brew install kdl-typekit
-brew install eigen-typekit
-brew install rsb
-brew install rsb-spread-cpp
-brew install rsb-tools-cl
-brew install rsb-tools-cpp
-brew install rst-converters
-brew install rst-rt
-brew install rtt-core-extensions
-brew install rtt-dot-service
-brew install rtt-gazebo-clock-plugin
-brew install rtt-gazebo-embedded
-brew install rtt-rsb-transport
-brew install rtt-rst-rt-typekit
+    brew install orocos-ocl
+    brew install orocos-stdint_typekit
+    brew install orocos-typelib
+    brew install kdl-typekit
+    brew install eigen-typekit
+    brew install rsb
+    brew install rsb-spread-cpp
+    brew install rsb-tools-cl
+    brew install rsb-tools-cpp
+    brew install rst-converters
+    brew install rst-rt
+    brew install rtt-core-extensions
+    brew install rtt-dot-service
+    brew install rtt-gazebo-clock-plugin
+    brew install rtt-gazebo-embedded
+    brew install rtt-rsb-transport
+    brew install rtt-rst-rt-typekit
 
 ### System Test
 
