@@ -19,17 +19,15 @@ and the KUKA LWRIV+ robot. Please check back often as we continuously extend thi
 
 [CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is
 modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
-for easily replication, which is available [here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
+for easily replication.
 
 It has so far been tested on:
 
-* Ubuntu Trusty (LTS 14.04, 64 Bit) using Gazebo 6.5 / (LTS 7.1) and OROCOS-RTT 2.8
+* Ubuntu Trusty LTS 14.04 and LTS 16.04 64 Bit using Gazebo 7 and OROCOS-RTT 2.8
 
 * OS X Yosemite (10.10) / El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.8
 
 The following configurations will be supported / tested soon:
-
-* Ubuntu Xenial (LTS 14.04, 64 Bit) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
 
 * OS X El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
 
@@ -38,10 +36,12 @@ The following configurations will be supported / tested soon:
 ##### Ubuntu
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
-   **NOTE:** If you are on Ubuntu **Trusty**, you need to source the ros environment before starting the jenkins (./start_jenkins) in the linked
-   tutorial.
+   
+   **NOTE:** If you are on Ubuntu **Trusty**, you need to source the ROS environment **before** starting the jenkins (./start_jenkins) in the linked
+   tutorial. If you are on Ubuntu **Xenial** you **don't** need to source the setup.bash
    
         source /opt/ros/indigo/setup.bash
+        ./start_jenkins
 
 	<!-- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
 	[here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0). -->
@@ -157,9 +157,13 @@ The commands shown here assume that you execute them in a  terminal using bash.
 
 _For **Ubuntu** you just need to source the following script that sets up all the environmental variables for you._
 
-1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-nightly_.
+1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-[trusty]-nightly_.
 
         source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+        
+        or
+        
+        source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
 
 ##### OS X
 
@@ -181,6 +185,11 @@ _For **OS X** you need to set the following environmental variables manually._
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     rsb0.14 server
+    
+    or
+    
+    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    rsb0.14 server
 
 
 You should see some output confirming that the server has started.
@@ -189,8 +198,13 @@ You should see some output confirming that the server has started.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     deployer-gnulinux
-
-
+    
+    or
+    
+    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    deployer-gnulinux
+    
+    
 You should get a shell-style prompt, which allows you to interact with the RTT environment.
 
 #### Load and start the required CoSimA components
@@ -209,6 +223,11 @@ You should see quite some output in the deployer that you may ignore for now.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     rsb0.14 logger socket:/
+    
+    or
+    
+    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    rsb0.14 logger socket:/
 
 
 You should see a data stream that sends joint feedback with 100Hz.
@@ -218,6 +237,11 @@ You should see a data stream that sends joint feedback with 100Hz.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     gzclient
+    
+    or
+    
+    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    gzclient
 
 
 You should see the robot in the Gazebo front end.
@@ -226,6 +250,11 @@ You should see the robot in the Gazebo front end.
 
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+    rsb-robot-gui1.0
+    
+    or
+    
+    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     rsb-robot-gui1.0
 
 
