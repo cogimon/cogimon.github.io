@@ -38,7 +38,7 @@ The following configurations will be supported / tested soon:
 ##### Ubuntu
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
-   **NOTE** If you are on Ubuntu **Trusty**, you need to source the ros environment before starting the jenkins (./start_jenkins) in the linked
+   **NOTE:** If you are on Ubuntu **Trusty**, you need to source the ros environment before starting the jenkins (./start_jenkins) in the linked
    tutorial.
    
         source /opt/ros/indigo/setup.bash
