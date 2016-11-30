@@ -104,7 +104,7 @@ _The following commands add Gazebo repositories for binary installation to your 
 ##### Ubuntu
 
 1. Install the ```CogIMon Minimal Simulation Distribution-nightly``` distribution as explained
-[here](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly).
+[here xenial](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) [here trusty](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-trusty-simulation-distribution-nightly).
 In particular you need to install the system dependences **first** and call the build generator for the CoSimA distribution.
 
 	***Note:*** 
