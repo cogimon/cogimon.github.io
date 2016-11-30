@@ -38,6 +38,9 @@ The following configurations will be supported / tested soon:
 ##### Ubuntu
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+   **NOTE** If you are on Ubuntu **Trusty**, you need to source the ros environment before starting the jenkins (./start_jenkins)
+   
+        source /opt/ros/indigo/setup.bash
 
 	<!-- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
 	[here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0). -->
@@ -109,9 +112,14 @@ In particular you need to install the system dependences **first** and call the 
 	* You need to replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile
 	  or the password that you used during the Jenkins bootstrapping.
 
-	A full example of the command line call may look similar to the following:
+	A full example of the command line call for **Trusty**:
+
+        $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-trusty-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
+
+    A full example of the command line call for **Xenial**:
 
         $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
+
 
 2. In your local [Jenkins build server](https://localhost:8080) trigger the ```	distribution-buildflow-cogimon-minimal-nightly``` job (only possible after login).
 
