@@ -202,6 +202,7 @@ You should see some output confirming that the server has started.
     or
     
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    source /opt/ros/indigo/setup.bash
     deployer-gnulinux
     
     
