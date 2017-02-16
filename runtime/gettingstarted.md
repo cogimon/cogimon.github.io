@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting Started
-section: builder/gettingstarted
+section: runtime/gettingstarted
 ---
 
 <div class="page-header">
@@ -36,10 +36,10 @@ The following configurations will be supported / tested soon:
 ##### Ubuntu
 
 1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
-   
+
    **NOTE:** If you are on Ubuntu **Trusty**, you need to source the ROS environment **before** starting the jenkins (./start_jenkins) in the linked
    tutorial. If you are on Ubuntu **Xenial** you **don't** need to source the setup.bash
-   
+
         source /opt/ros/indigo/setup.bash
         ./start_jenkins
 
@@ -58,7 +58,7 @@ The following configurations will be supported / tested soon:
         brew tap corlab/homebrew-formulas
 
 
-#### Install Gazebo 
+#### Install Gazebo
 
 ##### Ubuntu
 
@@ -92,7 +92,7 @@ _The following commands add Gazebo repositories for binary installation to your 
 
         brew tap osrf/simulation
 
-    
+
 2. Install Gazebo7. _If you're running **Yosemite** you can use the bottled-installation, which is much faster than building from source._
 
         brew install gazebo7
@@ -107,7 +107,7 @@ _The following commands add Gazebo repositories for binary installation to your 
 [here for xenial](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) **or** [here for trusty](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-trusty-nightly).
 In particular you need to install the system dependences **first** and call the build generator for the CoSimA distribution.
 
-	***Note:*** 
+	***Note:***
 
 	* You may add ```--cache-directory=/tmp``` to the build generator command in order to speed up repeated job generation
 	* You need to replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile
@@ -160,9 +160,9 @@ _For **Ubuntu** you just need to source the following script that sets up all th
 1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-[trusty]-nightly_.
 
         source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-        
+
         or
-        
+
         source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
 
 ##### OS X
@@ -185,9 +185,9 @@ _For **OS X** you need to set the following environmental variables manually._
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     rsb0.14 server
-    
+
     or
-    
+
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     rsb0.14 server
 
@@ -198,14 +198,14 @@ You should see some output confirming that the server has started.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     deployer-gnulinux
-    
+
     or
-    
+
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     source /opt/ros/indigo/setup.bash
     deployer-gnulinux
-    
-    
+
+
 You should get a shell-style prompt, which allows you to interact with the RTT environment.
 
 #### Load and start the required CoSimA components
@@ -224,9 +224,9 @@ You should see quite some output in the deployer that you may ignore for now.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     rsb0.14 logger socket:/
-    
+
     or
-    
+
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     rsb0.14 logger socket:/
 
@@ -238,9 +238,9 @@ You should see a data stream that sends joint feedback with 100Hz.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     gzclient
-    
+
     or
-    
+
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     gzclient
 
@@ -252,9 +252,9 @@ You should see the robot in the Gazebo front end.
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
     rsb-robot-gui1.0
-    
+
     or
-    
+
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
     rsb-robot-gui1.0
 
