@@ -1,0 +1,53 @@
+{
+  "languagesFields": [
+    "orbit",
+    "angle",
+    "numConcepts",
+    "name"
+  ],
+  "languageCategories": [
+    {
+      "name": "Kinematics",
+      "languages": [
+        [3,0,10,"Kinematics"]
+      ],
+      "color": ["#0000BB"]
+    },
+    {
+      "name": "Core",
+      "languages": [
+        [0.5,-90,30,"Capabilities"],
+        [0.5,-210,30,"Software Platforms"],
+        [0.5,30,30,"Hardware Platforms"]
+      ],
+      "color": ["#AA0000"]
+    },
+    {
+      "name": "ComponentBasedSystems",
+      "languages": [
+        [3,33,15,"Component"]
+      ],
+      "color": ["#A00CCA"],
+      "belongsToCoreLanguage": "Capabilities"
+    },
+    {
+      "name": "Coordination",
+      "languages": [
+        [3,56,20,"Coordination"],
+        [3.8,66,8,"Systems Coordination"]
+      ],
+      "color": ["#60AB4A"],
+      "belongsToCoreLanguage": "Capabilities"
+    },
+    {
+      "name": "Orocos",
+      "languages": [
+        [5,-56,3,"Orocos"],
+        [5.1,-66,10,"Orocos Component"],
+        [5.2,-60,5,"Orocos Systems Coordination"]
+      ],
+      "color": ["#0034ED"],
+      "belongsToCoreLanguage": "Capabilities"
+    }
+  ]
+}
