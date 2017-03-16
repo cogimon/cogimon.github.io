@@ -36,3 +36,154 @@ Once the model of the scenario is ready, the necessary artifacts are generated t
 1. In this case the Orocos Program Script is produced and launched by the Orocos environment together with the Gazebo simulation to start the **Experiment Execution**{: style="color:#a6ab5c;"} of the modeled scenario.
 2. The recorded data from the experiment simulation needs to be evaluated in an in-depth **Analysis**{: style="color:#545e73;"} to spot flaws in the model and improve those by re-iterating the workflow.
 3. If the modeled scenario performs as expected in the simulation, it can be deployed and executed in the real hardware platform. This is not yet done in this example.
+
+<!-- <div id="mmm" class="span9" style="height: 500px;"></div> -->
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('mmm'));
+
+var languageData;
+$.get('data/languages.json').done(function (data) {
+  languageData = data.languageCategories;
+    var hours = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+    //var days = ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+    var data2 = [[2,20,20,'a','#4400AA']];
+
+    var option = {
+      baseOption: {
+        //title: {
+            //text: 'Punch Card of Github'
+        //},
+        //legend: {
+            //data: ['Punch Card'],
+            //left: 'right'
+        //},
+        polar: {
+          center: ['13%', '50%'],
+          radius: 300
+          },
+        angleAxis: {
+            show: false,
+            //type: 'category',
+            //data: hours,
+            min: 0,
+            max: 360,
+            startAngle: 0,
+            boundaryGap: false,
+            clockwise: true,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            }
+        },
+        radiusAxis: {
+            type: 'value',
+            min: 0,
+            max: 6,
+            //data: orbits,
+            boundaryGap: false,
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#999',
+                    type: 'solid',
+                    width: 2
+                }
+            },
+            axisLabel: {
+                show: false
+            }
+        },
+        series: [],
+        media: [{
+          option: {
+              series: [{
+                  mapLocation: {x: 500, y: 0}
+              }]
+          }
+        }]
+      }
+    };
+
+
+
+
+
+
+
+
+// Dynamic Parsing of Language Data
+var options2 = {
+      tooltip: {
+          formatter: function (params) {
+              return params.value[2] + ' concepts in ' + params.value[3];
+          }
+      },
+      series: []
+  };
+
+$.each(languageData, function(idx, obj) {
+  var newSeries = {
+          name: obj.name,
+          type: 'effectScatter',
+          coordinateSystem: 'polar',
+          color: obj.color,
+          data: obj.languages,
+          symbolSize: function (val) {
+              return val[2] * 1;
+          },
+          markPoint : {
+              data : [
+                  {name : 'aa', coord: [3, 90]},
+                  {type : 'min', name: '最小值'}
+              ]
+          },
+          markLine: {
+            data: [
+              [
+                {
+                   name: 'Markline between two points',
+                   coord: [3, 45]
+                },
+                {
+                   coord: [2, 70]
+                }
+              ]
+            ]
+          },
+          rippleEffect: {
+              brushType: 'fill',
+              period: 4,
+              scale: 2
+          },
+          hoverAnimation: true,
+          label: {
+              normal: {
+                  show: false
+                  //position: [50,'0%']
+              },
+              emphasis: {
+                  show: true
+                  //position: 'right'
+              }
+          }
+      };
+  options2.series.push(newSeries);
+});
+
+myChart.setOption(option);
+myChart.setOption(options2);
+
+
+});
+</script>
