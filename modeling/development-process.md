@@ -37,7 +37,7 @@ Once the model of the scenario is ready, the necessary artifacts are generated t
 2. The recorded data from the experiment simulation needs to be evaluated in an in-depth **Analysis**{: style="color:#545e73;"} to spot flaws in the model and improve those by re-iterating the workflow.
 3. If the modeled scenario performs as expected in the simulation, it can be deployed and executed in the real hardware platform. This is not yet done in this example.
 
-<div id="mmm" class="span9" style="height: 500px;"></div>
+<!-- <div id="mmm" class="span9" style="height: 500px;"></div> -->
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -61,7 +61,8 @@ $.get('data/languages.json').done(function (data) {
             //left: 'right'
         //},
         polar: {
-          center: ['13%', '50%']
+          center: ['13%', '50%'],
+          radius: 300
           },
         angleAxis: {
             show: false,
@@ -95,7 +96,8 @@ $.get('data/languages.json').done(function (data) {
                 show: true,
                 lineStyle: {
                     color: '#999',
-                    type: 'solid'
+                    type: 'solid',
+                    width: 2
                 }
             },
             axisLabel: {
@@ -140,6 +142,31 @@ $.each(languageData, function(idx, obj) {
           symbolSize: function (val) {
               return val[2] * 1;
           },
+          markPoint : {
+              data : [
+                  {name : 'aa', coord: [3, 90]},
+                  {type : 'min', name: '最小值'}
+              ]
+          },
+          markLine: {
+            data: [
+              [
+                {
+                   name: 'Markline between two points',
+                   coord: [3, 45]
+                },
+                {
+                   coord: [2, 70]
+                }
+              ]
+            ]
+          },
+          rippleEffect: {
+              brushType: 'fill',
+              period: 4,
+              scale: 2
+          },
+          hoverAnimation: true,
           label: {
               normal: {
                   show: false
@@ -149,9 +176,6 @@ $.each(languageData, function(idx, obj) {
                   show: true
                   //position: 'right'
               }
-          },
-          animationDelay: function (idx) {
-              return idx * 5;
           }
       };
   options2.series.push(newSeries);

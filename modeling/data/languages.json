@@ -11,7 +11,7 @@
       "languages": [
         [3,0,10,"Kinematics"]
       ],
-      "color": ["#0000BB"]
+      "color": ["#d4bbdc"]
     },
     {
       "name": "Core",
@@ -20,14 +20,14 @@
         [0.5,-210,30,"Software Platforms"],
         [0.5,30,30,"Hardware Platforms"]
       ],
-      "color": ["#AA0000"]
+      "color": ["#4e81b0"]
     },
     {
       "name": "ComponentBasedSystems",
       "languages": [
         [3,33,15,"Component"]
       ],
-      "color": ["#A00CCA"],
+      "color": ["#cd4889"],
       "belongsToCoreLanguage": "Capabilities"
     },
     {
@@ -36,7 +36,7 @@
         [3,56,20,"Coordination"],
         [3.8,66,8,"Systems Coordination"]
       ],
-      "color": ["#60AB4A"],
+      "color": ["#eac7d6"],
       "belongsToCoreLanguage": "Capabilities"
     },
     {
@@ -46,7 +46,7 @@
         [5.1,-66,10,"Orocos Component"],
         [5.2,-60,5,"Orocos Systems Coordination"]
       ],
-      "color": ["#0034ED"],
+      "color": ["#b8d0d9"],
       "belongsToCoreLanguage": "Capabilities"
     }
   ]
