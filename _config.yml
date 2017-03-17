@@ -21,9 +21,3 @@ github_username:  jekyll
 markdown: kramdown
 #highlighter: pygments
 permalink: /:title
-
-highlighter: rouge
-kramdown:
-  input: GFM
-  hard_wrap: false
-  syntax_highlighter: rouge
