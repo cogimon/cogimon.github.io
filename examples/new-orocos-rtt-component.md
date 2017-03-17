@@ -59,11 +59,11 @@ In **.cpp / .hpp**:
     ```c++
     #include "simple-rtt-component.hpp" //  <--- Change the name
 
-    #..[ omitted ]..
+    //..[ omitted ]..
 
     RttComponent::RttComponent(std::string const & name) : RTT::TaskContext(name) {} //  <--- Change the name
 
-    #..[ omitted ]..
+    //..[ omitted ]..
 
     // This macro, as you can see, creates the component. Every component should have this!
     ORO_CREATE_COMPONENT_LIBRARY()ORO_LIST_COMPONENT_TYPE(RttComponent) //  <--- Change the name
