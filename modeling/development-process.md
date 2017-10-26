@@ -19,7 +19,7 @@ section: modeling/development-process
 In order to create a scenario, the **Experiment Designer, Technical Architect, Safety Engineer, etc.** need to model the different aspects that are required for the particular scenario.
 
 1. The **Experiment Designer** creates a platform independent model of the scenario:
-    1. the **Static View**{: style="color:#68a3ab;"} is defined by choosing skill components (i.e. controller, etc.) from the [CogIMon Component Library (CCL)](/ccl/overview.html) and defining the data-flow between those.
+    1. the **Static View**{: style="color:#68a3ab;"} is defined by choosing skill components (i.e. controller, etc.) from the [CoSiMA Component Library (CCL)](/ccl/overview.html) and defining the data-flow between those.
     2. defining the control-flow for the scenario covers the **Dynamic View**{: style="color:#f5ab5e;"} of the system.
 2. Next the **Technical Architect** maps the independent model to a chosen platform:
     1. W.r.t. the **Technology Mapping**{: style="color:#8aa885;"}, a software platform needs to be chosen and configured properly (e.g., Orocos RTT).
