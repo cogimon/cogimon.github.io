@@ -184,12 +184,12 @@ _For **OS X** you need to set the following environmental variables manually._
 #### Start the RSB Server process
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    rsb0.14 server
+    rsb0.16 server
 
     or
 
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    rsb0.14 server
+    rsb0.16 server
 
 
 You should see some output confirming that the server has started.
@@ -214,7 +214,7 @@ Please type within the deployer-console (replace $HOME with the expanded install
 
 
     loadService("this","scripting")
-    scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up.ops")
+    scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_rsb.ops")
 
 
 You should see quite some output in the deployer that you may ignore for now.
@@ -223,12 +223,12 @@ You should see quite some output in the deployer that you may ignore for now.
 
 
     source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    rsb0.14 logger socket:/
+    rsb0.16 logger socket:/
 
     or
 
     source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    rsb0.14 logger socket:/
+    rsb0.16 logger socket:/
 
 
 You should see a data stream that sends joint feedback with 100Hz.
@@ -246,7 +246,7 @@ You should see a data stream that sends joint feedback with 100Hz.
 
 
 You should see the robot in the Gazebo front end.
-
+<!--
 #### Start the Robot Gui to make the robot move
 
 
@@ -262,7 +262,7 @@ You should see the robot in the Gazebo front end.
 You should see a basic robot gui that allows you to set a joint configuration that is send to the simulated robot once you apply the values. At the end of this step the Gazebo frontend and the robot GUI should look similar to the following screenshot:
 
 ![Screenshot of COMAN Simulation and Robot GUI in Gazebo 6](images/cosima.png "COMAN Simulation in Gazebo 6")
-
+-->
 
 <!-- TODO:
 * Add link and explanation to CITk distribution / experiment -->
