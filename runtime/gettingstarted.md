@@ -122,7 +122,7 @@ In particular you need to install the system dependences **first** and call the 
         $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
 
 
-2. In your local [Jenkins build server](https://localhost:8080) trigger the ```	distribution-buildflow-cogimon-minimal-nightly``` job (only possible after login).
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-minimal-trusty-nightly-toolkit-orchestration``` job (only possible after login).
 
 3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
 
