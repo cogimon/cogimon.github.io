@@ -115,11 +115,11 @@ In particular you need to install the system dependences **first** and call the 
 
 	A full example of the command line call for **Trusty**:
 
-        $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-trusty-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
+        $HOME/citk/jenkins/job-configurator --on-error=continue generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-minimal-trusty-nightly.distribution
 
     A full example of the command line call for **Xenial**:
 
-        $HOME/citk/jenkins/job-configurator --on-error=continue -d $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems
+        $HOME/citk/jenkins/job-configurator --on-error=continue generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution
 
 
 2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-minimal-trusty-nightly-toolkit-orchestration``` job (only possible after login).
