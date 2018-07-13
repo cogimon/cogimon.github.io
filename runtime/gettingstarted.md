@@ -22,7 +22,7 @@ This document explain installation and test of the CogIMon Simulation Architectu
 
 ##### Gazebo 
 
-_The following commands add Gazebo repositories for binary installation to your system._
+_The following commands add OSRF repositories for binary installations of recent Gazebo versions to your system._
 
 1. Setup your computer to accept software from packages.osrfoundation.org.
 
@@ -39,11 +39,11 @@ _The following commands add Gazebo repositories for binary installation to your 
 
 		sudo apt-get update
 
-##### ROS Support (optional)
+##### ROS Support
 
 _The following commands add ROS repositories for binary installation of ROS dependencies to your system. These are only required if you need the ROS interoperability features._
 
-For example, if you want to use ROS Kinetic with CoSiMA, please follow the following installation instructions:
+For example, if you want to use ROS Kinetic with CoSiMA as explained in the remainder of this tutorial, please execute the following instructions in a shell:
 
 1. Setup your computer to accept software from packages.ros.org.
 
@@ -70,56 +70,52 @@ For example, if you want to use ROS Kinetic with CoSiMA, please follow the follo
 	<!-- ***Note:*** If the download from the stated server is slow, you may also download it from the mirror
 	[here](https://www.dropbox.com/sh/1q6w0akfg9fji8t/AAADUDUkU2bCemCEHyoT3-nwa/jenkins.tar.gz?dl=0). -->
 
-1. Clone the CITk recipe repository
+1. Clone the CITk recipe repository and checkout the CogIMon branch
 
 		mkdir -p $HOME/citk/dist && cd $HOME/citk/dist
-        git clone https://opensource.cit-ec.de/git/citk .
+       git clone https://opensource.cit-ec.de/git/citk .
+       git checkout wip-cogimon 
 
 
 #### Install Binary Dependencies
 
 1. Issue the following command to get a list of platform requirements that shall be installed in the system prio to the source build of CoSiMA components:
 
-		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-nightly.distribution
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-ros-nightly.distribution
 
 	**NOTE:** You may add ```--cache-directory=/tmp/bg/``` to the build generator command in order to speed up repeated job generation as show in the following examples. You should replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile or the password that you used during the Jenkins bootstrapping. These cpomments apply to all build generator commands in this tutorial.
 
 2. Install the list of platform dependencies by copying the output of the generator command below "Found XX platform requirements..." as argument of an apt-get install command similar to the following example:
 
-        $ $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-nightly.distribution
+        $ $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-ros-nightly.distribution
         $ ...
-        $ Found 40 platform requirements for ubuntu xenial:
+        $ Found 41 platform requirements for ubuntu xenial:
         	ant autoconf cmake g++ gcc git libboost-date-time-dev libboost-filesystem-dev  \
         	libboost-program-options-dev libboost-regex-dev libboost-signals-dev  \
         	libboost-system-dev libboost-test-dev libboost-thread-dev libeigen3-dev  \
         	libgazebo7-dev libgtest-dev libomniorb4-dev libprotobuf-dev libprotobuf-java  \
         	liburdfdom-dev libxml2-dev libyaml-cpp-dev make maven omniidl omniorb  \
         	openjdk-8-jdk patch protobuf-compiler pylint python-dev python-gi  \
-        	python-minimal python-protobuf python-setuptools ruby-dev tar unzip wget
+        	python-minimal python-protobuf python-setuptools ros-kinetic-desktop ruby-dev  \
+        	tar unzip wget
         $ sudo apt-get install ant autoconf cmake g++ gcc git libboost-date-time-dev 
         	libboost-filesystem-dev    libboost-program-options-dev libboost-regex-dev 
         	libboost-signals-dev    libboost-system-dev libboost-test-dev libboost-thread-dev
         	libeigen3-dev    libgazebo7-dev libgtest-dev libomniorb4-dev libprotobuf-dev 
         	libprotobuf-java    liburdfdom-dev libxml2-dev libyaml-cpp-dev make maven omniidl
         	omniorb    openjdk-8-jdk patch protobuf-compiler pylint python-dev python-gi    
-        	python-minimal python-protobuf python-setuptools ruby-dev tar unzip wget
+        	python-minimal python-protobuf python-setuptools ros-kinetic-desktop ruby-dev  \
+        	tar unzip wget
         
 #### Build and Install CoSiMA
 
 1. Install the CoSiMA distribution of your choice. 
 
-	In the following, we will install the CogIMon Core Simulation Distribution, which is specified in the ```cogimon-core-nightly.distribution``` file. To get ROS support, please install the CogIMon Distribution with ROS extensions, which is available through the file ```cogimon-core-ros-nightly.distribution```. Just in case, please make sure that you checked and installed first the platform requirements of this distribution as explained in the previous step.
+	In the following, we will install the CogIMon Core Simulation Distribution with ROS support, which is specified in the ```cogimon-core-ros-nightly.distribution``` file. If you do not need ROS support, you may install the CogIMon Core Simulation Distribution without ROS dependencies, which is available through the file ```cogimon-core-nightly.distribution```. Just in case, please make sure that you checked and installed first the platform requirements of the respective distribution as explained in the previous step.
 
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-ros-nightly.distribution
 
-		A full example of the command line call on **Trusty** with the CogiMon Core example:
-
-		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
-
-		A full example of the command line call for **Xenial** with the CogiMon Core example:
-
-		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
-
-2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-nightly-toolkit-orchestration``` job (only possible after login).
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-ros-nightly-toolkit-orchestration``` job (only possible after login).
 
 3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
 
@@ -128,22 +124,13 @@ For example, if you want to use ROS Kinetic with CoSiMA, please follow the follo
 The system can be manually tested in your Ubuntu environment with the following steps.
 The commands shown here assume that you execute them in a  terminal using bash.
 
-1. Source the particular script, which you'll find in your ```$prefix``` which is ```$HOME/citk/systems/cogimon-minimal-[trusty]-nightly```.
+1. Source the particular script, which you'll find in your ```$prefix``` which is ```$HOME/citk/systems/cogimon-core-ros-[trusty]-nightly```.
 
-		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
-
-	or  
-	
-		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
+		source $HOME/citk/systems/cogimon-core-ros-nightly/bin/setup-cogimon-env.sh
 
 2. Start the RSB Server process
   
 		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh    
-		rsb0.17 server
-
-	or  
-
-		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh    
 		rsb0.17 server
 
 	You should see some output confirming that the server has started.
@@ -151,12 +138,6 @@ The commands shown here assume that you execute them in a  terminal using bash.
 3. Start the RTT Deployer console
 
 		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
-		deployer-gnulinux
-
-    or  
-
-		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
-		source /opt/ros/indigo/setup.bash
 		deployer-gnulinux
 
 
@@ -176,21 +157,11 @@ The commands shown here assume that you execute them in a  terminal using bash.
 		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
 		rsb0.17 logger socket:/
 
-	or
-
-		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
-		rsb0.17 logger socket:/
-
 	You should see a data stream that sends joint feedback with 100Hz.
 
 6. Start the Gazebo client process
 
 		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
-		gzclient
-
-	or  
-
-		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
 		gzclient
 
 	You should see the robot standing in the center of the simulated Gazebo world similar to the following screenshot:
