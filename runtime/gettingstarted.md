@@ -106,6 +106,11 @@ For example, if you want to use ROS Kinetic with CoSiMA as explained in the rema
         	omniorb    openjdk-8-jdk patch protobuf-compiler pylint python-dev python-gi    
         	python-minimal python-protobuf python-setuptools ros-kinetic-desktop ruby-dev  \
         	tar unzip wget
+        	
+3. Initialize ROS dependency management by calling the following commands in a shell:
+
+		$ sudo rosdep init
+		$ rosdep update        	
         
 #### Build and Install CoSiMA
 
@@ -115,9 +120,11 @@ For example, if you want to use ROS Kinetic with CoSiMA as explained in the rema
 
 		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-ros-nightly.distribution
 
-2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-ros-nightly-toolkit-orchestration``` job (only possible after login).
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-ros-nightly-toolkit-orchestration``` job (only possible after login). On the following page just hit hit *build* button.
 
-3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
+3. Relax and grab a :coffee: ... 
+
+4. Check for completion by verifying that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
 
 ### System Test
 
