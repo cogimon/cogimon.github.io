@@ -80,7 +80,7 @@ For example, if you want to use ROS Kinetic with CoSiMA, please follow the follo
 
 1. Issue the following command to get a list of platform requirements that shall be installed in the system prio to the source build of CoSiMA components:
 
-		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-nightly.distribution
 
 	**NOTE:** You may add ```--cache-directory=/tmp/bg/``` to the build generator command in order to speed up repeated job generation as show in the following examples. You should replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile or the password that you used during the Jenkins bootstrapping. These cpomments apply to all build generator commands in this tutorial.
 
