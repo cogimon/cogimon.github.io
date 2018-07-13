@@ -12,30 +12,54 @@ section: runtime/gettingstarted
 for hybrid force and motion controllers, check out this intro video: -->
 </div>
 
-This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN
-and the KUKA LWRIV+ robot. Please check back often as we continuously extend this documentation.
+This document explain installation and test of the CogIMon Simulation Architecture (CoSimA) with support for IIT's COMAN and the KUKA LWRIV+ robot. Please check back often as we continuously extend this documentation.
 
 ### Software Installation
 
-[CoSimA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is
-modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution
-for easily replication.
+[CoSiMA](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) is modeled in a [Cognitive Interaction Toolkit (CITk)](https://toolkit.cit-ec.uni-bielefeld.de/) distribution for easy replication. The CITk-based installer supports Ubuntu Trusty LTS 14.04 and LTS 16.04 64 Bit using Gazebo 7 and OROCOS-RTT 2.8.
 
-It has so far been tested on:
+#### Configure Package Repositories
 
-* Ubuntu Trusty LTS 14.04 and LTS 16.04 64 Bit using Gazebo 7 and OROCOS-RTT 2.8
+##### Gazebo 
 
-* OS X Yosemite (10.10) / El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.8
+_The following commands add Gazebo repositories for binary installation to your system._
 
-The following configurations will be supported / tested soon:
+1. Setup your computer to accept software from packages.osrfoundation.org.
 
-* OS X El Capitan (10.11) using Gazebo (LTS 7.1) and OROCOS-RTT 2.9
+    ***Note:*** there is a list of [available mirrors](https://bitbucket.org/osrf/gazebo/wiki/gazebo_mirrors) for this
+    repository which could improve the download speed.
+
+        sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+
+2. Setup keys.
+
+        wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+        
+3. Update Package Cache.
+
+		sudo apt-get update
+
+##### ROS Support (optional)
+
+_The following commands add ROS repositories for binary installation of ROS dependencies to your system. These are only required if you need the ROS interoperability features._
+
+For example, if you want to use ROS Kinetic with CoSiMA, please follow the following installation instructions:
+
+1. Setup your computer to accept software from packages.ros.org.
+
+        sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+2. Setup keys.
+
+        sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+3. Update Package Cache.
+
+		sudo apt-get update
 
 #### Bootstrap the CITk environment
 
-##### Ubuntu
-
-1. Setup the CITk toolchain on your machine according to the instructions [here](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
+1. Setup the CITk toolchain on your machine according to the instructions [on this page](https://toolkit.cit-ec.uni-bielefeld.de/tutorials/bootstrapping)
 
    **NOTE:** If you are on Ubuntu **Trusty**, you need to source the ROS environment **before** starting the jenkins (./start_jenkins) in the linked
    tutorial. If you are on Ubuntu **Xenial** you **don't** need to source the setup.bash
@@ -51,102 +75,54 @@ The following configurations will be supported / tested soon:
 		mkdir -p $HOME/citk/dist && cd $HOME/citk/dist
         git clone https://opensource.cit-ec.de/git/citk .
 
-##### OS X
 
-1. Add our homebrew tap, which contains the necessary formulas for the installation.
+#### Install Binary Dependencies
 
-        brew tap corlab/homebrew-formulas
+1. Issue the following command to get a list of platform requirements that shall be installed in the system prio to the source build of CoSiMA components:
 
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
 
-#### Install Gazebo
+	**NOTE:** You may add ```--cache-directory=/tmp/bg/``` to the build generator command in order to speed up repeated job generation as show in the following examples. You should replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile or the password that you used during the Jenkins bootstrapping. These cpomments apply to all build generator commands in this tutorial.
 
-##### Ubuntu
+2. Install the list of platform dependencies by copying the output of the generator command below "Found XX platform requirements..." as argument of an apt-get install command similar to the following example:
 
-_The following commands add Gazebo repositories for binary installation to your system._
+        $ $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ platform-requirements -p 'ubuntu xenial' distributions/cogimon-core-nightly.distribution
+        $ ...
+        $ Found 40 platform requirements for ubuntu xenial:
+        	ant autoconf cmake g++ gcc git libboost-date-time-dev libboost-filesystem-dev  \
+        	libboost-program-options-dev libboost-regex-dev libboost-signals-dev  \
+        	libboost-system-dev libboost-test-dev libboost-thread-dev libeigen3-dev  \
+        	libgazebo7-dev libgtest-dev libomniorb4-dev libprotobuf-dev libprotobuf-java  \
+        	liburdfdom-dev libxml2-dev libyaml-cpp-dev make maven omniidl omniorb  \
+        	openjdk-8-jdk patch protobuf-compiler pylint python-dev python-gi  \
+        	python-minimal python-protobuf python-setuptools ruby-dev tar unzip wget
+        $ sudo apt-get install ant autoconf cmake g++ gcc git libboost-date-time-dev 
+        	libboost-filesystem-dev    libboost-program-options-dev libboost-regex-dev 
+        	libboost-signals-dev    libboost-system-dev libboost-test-dev libboost-thread-dev
+        	libeigen3-dev    libgazebo7-dev libgtest-dev libomniorb4-dev libprotobuf-dev 
+        	libprotobuf-java    liburdfdom-dev libxml2-dev libyaml-cpp-dev make maven omniidl
+        	omniorb    openjdk-8-jdk patch protobuf-compiler pylint python-dev python-gi    
+        	python-minimal python-protobuf python-setuptools ruby-dev tar unzip wget
+        
+#### Build and Install CoSiMA
 
-1. Setup your computer to accept software from packages.osrfoundation.org.
+1. Install the CoSiMA distribution of your choice. 
 
-    ***Note:*** there is a list of [available mirrors](https://bitbucket.org/osrf/gazebo/wiki/gazebo_mirrors) for this
-    repository which could improve the download speed.
-
-        sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-
-2. Setup keys.
-
-        wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-
-3. Update Package Cache.
-
-        sudo apt-get update
-
-4. Install Gazebo7.
-
-        sudo apt-get install gazebo7
-        # For developers that work on top of Gazebo, one extra package
-        sudo apt-get install libgazebo7-dev
-
-
-##### OS X
-
-1. Add the official tap for Gazebo.
-
-        brew tap osrf/simulation
+In the following, we will install the CogIMon Core Simulation Distribution, which is specified in the ```cogimon-core-nightly.distribution``` file. To get ROS support, please install the CogIMon Distribution with ROS extensions, which is available through the file ```cogimon-core-ros-nightly.distribution```. Just in case, please make sure that you checked and installed first the platform requirements of this distribution as explained in the previous step.
 
 
-2. Install Gazebo7. _If you're running **Yosemite** you can use the bottled-installation, which is much faster than building from source._
+	A full example of the command line call on **Trusty** with the CogiMon Core example:
 
-        brew install gazebo7
+        $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
 
-[In case you experience any problems at this stage, please consult the Gazebo installation  guidelines](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)
+    A full example of the command line call for **Xenial** with the CogiMon Core example:
 
-#### Install CoSimA
-
-##### Ubuntu
-
-1. Install the ```CogIMon Minimal Simulation Distribution-nightly``` distribution as explained
-[here for xenial](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-nightly) **or** [here for trusty](https://toolkit.cit-ec.uni-bielefeld.de/systems/versions/cogimon-minimal-simulation-distribution-trusty-nightly).
-In particular you need to install the system dependences **first** and call the build generator for the CoSimA distribution.
-
-	***Note:***
-
-	* You may add ```--cache-directory=/tmp``` to the build generator command in order to speed up repeated job generation
-	* You need to replace **-u USER and -p YOUR_PASSWORD** with the Jenkins API token that can be retrieved from your Jenkins user profile
-	  or the password that you used during the Jenkins bootstrapping.
-
-	A full example of the command line call for **Trusty**:
-
-        $HOME/citk/jenkins/job-configurator --on-error=continue generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-minimal-trusty-nightly.distribution
-
-    A full example of the command line call for **Xenial**:
-
-        $HOME/citk/jenkins/job-configurator --on-error=continue generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-minimal-nightly.distribution
+        $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
 
 
-2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-minimal-trusty-nightly-toolkit-orchestration``` job (only possible after login).
+2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-nightly-toolkit-orchestration``` job (only possible after login).
 
 3. Wait for completion and check that all bullets are blue after the individual build has passed. Jenkins builds and installs the packages to the specified toolkit volume (see command line above).
-
-##### OS X
-
-***Note:*** The **OS X** instructions are still considered WiP. If you experience some problems, feel free to contact us.
-
-    brew install orocos-ocl
-    brew install orocos-stdint_typekit
-    brew install orocos-typelib
-    brew install kdl-typekit
-    brew install eigen-typekit
-    brew install rsb
-    brew install rsb-spread-cpp
-    brew install rsb-tools-cl
-    brew install rsb-tools-cpp
-    brew install rst-converters
-    brew install rst-rt
-    brew install rtt-core-extensions
-    brew install rtt-dot-service
-    brew install rtt-gazebo-clock-plugin
-    brew install rtt-gazebo-embedded
-    brew install rtt-rsb-transport
-    brew install rtt-rst-rt-typekit
 
 ### System Test
 
