@@ -108,17 +108,16 @@ For example, if you want to use ROS Kinetic with CoSiMA, please follow the follo
 
 1. Install the CoSiMA distribution of your choice. 
 
-In the following, we will install the CogIMon Core Simulation Distribution, which is specified in the ```cogimon-core-nightly.distribution``` file. To get ROS support, please install the CogIMon Distribution with ROS extensions, which is available through the file ```cogimon-core-ros-nightly.distribution```. Just in case, please make sure that you checked and installed first the platform requirements of this distribution as explained in the previous step.
+	In the following, we will install the CogIMon Core Simulation Distribution, which is specified in the ```cogimon-core-nightly.distribution``` file. To get ROS support, please install the CogIMon Distribution with ROS extensions, which is available through the file ```cogimon-core-ros-nightly.distribution```. Just in case, please make sure that you checked and installed first the platform requirements of this distribution as explained in the previous step.
 
 
-	A full example of the command line call on **Trusty** with the CogiMon Core example:
+		A full example of the command line call on **Trusty** with the CogiMon Core example:
 
-        $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
 
-    A full example of the command line call for **Xenial** with the CogiMon Core example:
+		A full example of the command line call for **Xenial** with the CogiMon Core example:
 
-        $HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
-
+		$HOME/citk/jenkins/job-configurator --on-error=continue --cache-directory=/tmp/bg/ generate -m toolkit -u YOUR_USERNAME -p YOUR_PASSWORD -D toolkit.volume=$HOME/citk/systems $HOME/citk/dist/distributions/cogimon-core-nightly.distribution
 
 2. In your local [Jenkins build server](https://localhost:8080) trigger the ```cogimon-core-nightly-toolkit-orchestration``` job (only possible after login).
 
@@ -126,112 +125,88 @@ In the following, we will install the CogIMon Core Simulation Distribution, whic
 
 ### System Test
 
-The system can be manually tested in your environment if you follow the following steps.
+The system can be manually tested in your Ubuntu environment with the following steps.
 The commands shown here assume that you execute them in a  terminal using bash.
 
-##### Ubuntu
+1. Source the particular script, which you'll find in your ```$prefix``` which is ```$HOME/citk/systems/cogimon-minimal-[trusty]-nightly```.
 
-_For **Ubuntu** you just need to source the following script that sets up all the environmental variables for you._
+		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
 
-1. Source the particular script, which you'll find in your _$prefix_ which is _$HOME/citk/systems/cogimon-minimal-[trusty]-nightly_.
+	or  
+	
+		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
 
-        source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+2. Start the RSB Server process
+  
+		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh    
+		rsb0.17 server
 
-        or
+	or  
 
-        source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh    
+		rsb0.17 server
 
-##### OS X
+	You should see some output confirming that the server has started.
 
-_For **OS X** you need to set the following environmental variables manually._
+3. Start the RTT Deployer console
 
-1. You need to "tell" Orocos where to find the libraries you want to use.
+		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
+		deployer-gnulinux
 
-        export RTT_COMPONENT_PATH=/usr/local/lib
+    or  
 
-2. You need to clone the [model repository](https://github.com/corlab/cogimon-gazebo-models) into your workspace.
-
-        export GAZEBO_MODEL_PATH=< path-to-the-model-repository >
-
-3. You need to "tell" Gazebo where to find the clock plugin for synchronization.
-
-        export GAZEBO_PLUGIN_PATH=/usr/local/lib/< path-to-gazebo-clock-plugin >
-
-#### Start the RSB Server process
-
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    rsb0.16 server
-
-    or
-
-    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    rsb0.16 server
+		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
+		source /opt/ros/indigo/setup.bash
+		deployer-gnulinux
 
 
-You should see some output confirming that the server has started.
+	You should get a shell-style prompt, which allows you to interact with the RTT environment.
 
-#### Start the RTT Deployer console
+4. Load and start the required CoSimA components
 
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    deployer-gnulinux
+	Please type within the deployer-console (replace ```$HOME``` with the expanded installation prefix, e.g. ```/home/$YOUR_USRNAME/```):
 
-    or
+		loadService("this","scripting")
+		scripting.runScript("$HOME/citk/systems/cogimon-core-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_rsb.ops")
 
-    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    source /opt/ros/indigo/setup.bash
-    deployer-gnulinux
+	You should see quite some output in the deployer that you may ignore for now.
 
+5. Start an RSB Logger process (optional)
 
-You should get a shell-style prompt, which allows you to interact with the RTT environment.
+		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
+		rsb0.17 logger socket:/
 
-#### Load and start the required CoSimA components
+	or
 
-Please type within the deployer-console (replace $HOME with the expanded installation prefix = /home/$YOUR_USRNAME/):
+		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
+		rsb0.17 logger socket:/
 
+	You should see a data stream that sends joint feedback with 100Hz.
 
-    loadService("this","scripting")
-    scripting.runScript("$HOME/citk/systems/cogimon-minimal-nightly/etc/cogimon-scenarios/scenario-coman/coman_bring_up_rsb.ops")
+6. Start the Gazebo client process
 
+		source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
+		gzclient
 
-You should see quite some output in the deployer that you may ignore for now.
+	or  
 
-#### Start an RSB Logger process (optional)
+		source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
+		gzclient
 
+	You should see the robot standing in the center of the simulated Gazebo world similar to the following screenshot:
+	
+	![CoSiMA in Action](images/coman-gazebo.png "COMAN Simulation in Gazebo using CoSiMA")
 
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    rsb0.16 logger socket:/
-
-    or
-
-    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    rsb0.16 logger socket:/
-
-
-You should see a data stream that sends joint feedback with 100Hz.
-
-#### Start the Gazebo client process
-
-
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
-    gzclient
-
-    or
-
-    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
-    gzclient
-
-
-You should see the robot in the Gazebo front end.
 <!--
 #### Start the Robot Gui to make the robot move
 
 
-    source $HOME/citk/systems/cogimon-minimal-nightly/bin/setup-cogimon-env.sh
+    source $HOME/citk/systems/cogimon-core-nightly/bin/setup-cogimon-env.sh
     rsb-robot-gui1.0
 
     or
 
-    source $HOME/citk/systems/cogimon-minimal-trusty-nightly/bin/setup-cogimon-env.sh
+    source $HOME/citk/systems/cogimon-core-trusty-nightly/bin/setup-cogimon-env.sh
     rsb-robot-gui1.0
 
 
