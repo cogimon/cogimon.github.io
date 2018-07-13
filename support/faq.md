@@ -12,29 +12,18 @@ section: support/faq
   <h1>FAQ Section</h1>
 </div>
 
-Oops. Nothing here, yet. We are constantly adding content, so please check back often.
+### Frequently Asked Questions
 
-### CoSimA ChangeLog
+#### Why does Gazebo crash in my VM?
 
-#### 2016-08-10
+When attempting to launch gazebo I get the following error:
 
-##### Fixed
-- Everything is now more stable!
-- GZ shutdown bug is fixed
+	VMware: vmw_ioctl_command error Invalid argument.
+	
+A workaround for this problem is to force GZ to use OpenGL2 by exporting the following environment variable:
 
-##### Changed
-- Kinematic chains are not hardcoded anymore _(thx Enrico)_
-- Clean and small dependency footprint
+	$ export SVGA_VGPU10=0
+	
+See also [this bug report](https://bugs.launchpad.net/stellarium/+bug/1577494) for a deeper explanation of the issue and the original fix.
 
-##### Added
-- Kinematic chains are now read from URDF/SRDF _(thx Enrico)_
-- Coman model with sticks as arms is supported
-- Support for loading predefined environments
-- Support for executing GZ sensors _(thx Josh)_
-- Resetting the robot simulation component _(thx Enrico)_
-- Resetting the model poses
-- Resetting the simulated world
 
-TODO
-
-- Versioning needs to be added soon
